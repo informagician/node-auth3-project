@@ -47,8 +47,12 @@ server.post('/api/login', (req,res) => {
 })
 
 server.get('/api/list', restricted, (req,res) => {
-    
-    Users.list()
+    // stretch
+    const {authorization} = req.headers
+
+    const department = jwt.decode(authorization).department
+
+    Users.list(department)
     .then(users => {
         res.status(200).json(users)
     })
@@ -71,7 +75,7 @@ function generateToken(user){
     const payload = {
         subject: user.id,
         username: user.username,
-        role: user.role
+        department: user.department
     }
 
     const options = {

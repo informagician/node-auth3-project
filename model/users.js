@@ -19,9 +19,10 @@ function login(user){
     .first()
 }
 
-function list() {
+function list(department) {
     return db('users')
     .select('*')
+    .where({department})
 }
 
 // function findById(id) {
