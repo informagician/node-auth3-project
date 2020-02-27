@@ -37,7 +37,20 @@ server.post('/api/login', (req,res) => {
     })
     .catch(err => {
         console.log(err)
-        res.status(500).json({errorMessage:'Something went wrong during register'})
+        res.status(500).json({errorMessage:'Something went wrong during login'})
+    })
+})
+
+server.get('/api/list', (req,res) => {
+
+    Users.list()
+    .then(users => {
+        res.status(200).json(users)
+    })
+    .catch(err => {
+        console.log(err)
+
+        res.status(500).json({errorMessage:'OOPS!'})
     })
 })
 
