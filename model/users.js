@@ -1,5 +1,5 @@
 const knex = require('knex')
-const db = knex(require('../database/knexfile').development)
+const db = knex(require('../knexfile').development)
 
 module.exports = {
     register,
